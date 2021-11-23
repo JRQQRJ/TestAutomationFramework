@@ -11,7 +11,8 @@ import org.testng.annotations.BeforeSuite;
 
 public class TestActions {
 
-    public WebDriver driver;
+    public ThreadLocal<WebDriver> driver= new ThreadLocal<>();// to run test cases in parallel, used instead of below
+    //public WebDriver driver;
     public DriverManager driverManager;
     public BaseActions pageActions;
 
@@ -22,16 +23,17 @@ public class TestActions {
         driverManager = new DriverManager();
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUpBrowser() throws Exception {
         driverManager.loadDriver();
-        driver = driverManager.getDriver();
-        pageActions = new BaseActions(driver);
+        driver.set(driverManager.getDriver());// used to run multiple test cases
+//        driver = driverManager.getDriver();
+        pageActions = new BaseActions(driver.get());
         pageActions.launchUrl(PropertiesLoader.appUrl);
     }
 
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDownBrowser() throws Exception {
         driverManager.closeBrowser();
     }

@@ -27,6 +27,8 @@ public class PropertiesLoader {
     public static void initializeProperties() throws Exception {
         if (configProperties == null) {
             configProperties = new Properties();
+//            String connect = System.getProperty("user.dir") + "//src//test//resources//configs.properties";
+//            System.out.println(connect);
             FileInputStream fileInputStream = new FileInputStream(new File(System.getProperty("user.dir") + "//src//test//resources//configs.properties"));
             configProperties.load(fileInputStream);
         }
