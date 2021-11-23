@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class DemoTest {
 
-    @DataProviderArgs("demoTest= username,password")
+    @DataProviderArgs("demoTest=username,password")
     @Test(dataProviderClass = DataProviderUtils.class, dataProvider = "jsonDataProvider")
     public void demoTest(String username, String password){
         System.out.println(username + " " + password);
