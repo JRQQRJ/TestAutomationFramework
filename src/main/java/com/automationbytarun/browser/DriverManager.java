@@ -4,7 +4,7 @@ import com.automationbytarun.properties.PropertiesLoader;
 import com.automationbytarun.properties.PropertiesValidator;
 import org.openqa.selenium.WebDriver;
 
-public class DriverManager {
+public  class DriverManager {
 
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
@@ -13,11 +13,11 @@ public class DriverManager {
         return driver.get();
     }
 
-    public void setDriver(WebDriver driver) {
+    public  void setDriver(WebDriver driver) {
         this.driver.set(driver);
     }
 
-    public void loadDriver() {
+    public  void loadDriver() {
         Browser browser = null;
         String path = "";
         if (PropertiesLoader.runOnBrowser.equalsIgnoreCase("Chrome")) {
