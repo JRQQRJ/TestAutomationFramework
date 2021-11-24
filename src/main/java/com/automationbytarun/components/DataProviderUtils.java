@@ -25,7 +25,7 @@ public class DataProviderUtils {
         String testFields = testCaseArguments.split("=")[1];
 //        System.out.println(testFields);
         List<String> allTestFields = Arrays.asList(testFields.split(","));
-        System.out.println(allTestFields);
+//        System.out.println(allTestFields);
 
         File testDataFile = new File(System.getProperty("user.dir")+ "//src//test//resources//testData.json");
 
@@ -50,11 +50,22 @@ public class DataProviderUtils {
 
             }
 
-            System.out.println(valueFromFields);
+//            System.out.println(valueFromFields);
             listOfList.add(valueFromFields);
-            System.out.println(listOfList);
+//            System.out.println(listOfList);
         }
 
-        return null;
+        return parseListToObjectArray(listOfList);
+    }
+
+    public static Object[][] parseListToObjectArray(List<List<String>> testData){
+        Object[][] TwoDArray = new Object[testData.size()][testData.get(0).size()];
+        for(int i=0;i<testData.size();i++){
+            List<String> subset = testData.get(i);
+            for (int j=0;j< subset.size();j++){
+                TwoDArray[i][j]=subset.get(j);
+            }
+        }
+        return TwoDArray;
     }
 }
