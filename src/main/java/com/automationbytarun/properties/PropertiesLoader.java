@@ -23,13 +23,15 @@ public class PropertiesLoader {
     public static boolean deleteCookies;
     public static boolean remoteRun;
     public static String appUrl;
+    public static String environment;
 
     public static void initializeProperties() throws Exception {
         if (configProperties == null) {
             configProperties = new Properties();
 //            String connect = System.getProperty("user.dir") + "//src//test//resources//configs.properties";
 //            System.out.println(connect);
-            FileInputStream fileInputStream = new FileInputStream(new File(System.getProperty("user.dir") + "//src//test//resources//configs.properties"));
+            FileInputStream fileInputStream = new FileInputStream(new File(System.getProperty("user.dir") + "//src//test//resources//configs-" +PropertiesLoader.environment+ ".properties"));
+            System.out.println("Environment Initialized:" + environment);
             configProperties.load(fileInputStream);
         }
         runOnBrowser = configProperties.getProperty("RunOnBrowser");
@@ -46,6 +48,7 @@ public class PropertiesLoader {
         deleteCookies = Boolean.valueOf(configProperties.getProperty("deleteCookies"));
         remoteRun = Boolean.valueOf(configProperties.getProperty("remoteRun"));
         appUrl = configProperties.getProperty("appUrl");
+        environment="stg";
     }
 
 

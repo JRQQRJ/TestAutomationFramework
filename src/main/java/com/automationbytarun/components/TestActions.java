@@ -3,11 +3,9 @@ package com.automationbytarun.components;
 import com.automationbytarun.browser.DriverManager;
 import com.automationbytarun.properties.PropertiesLoader;
 import com.automationbytarun.properties.PropertiesValidator;
+import com.beust.jcommander.Parameter;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 public class TestActions {
 
@@ -16,11 +14,22 @@ public class TestActions {
     public DriverManager driverManager;
     public BaseActions pageActions;
 
-    @BeforeSuite
-    public void setUpConfigurations() throws Exception {
+//    @BeforeSuite
+//    public void setUpConfigurations() throws Exception {
+////        PropertiesLoader.initializeProperties();
+////        PropertiesValidator.validateConfigurations();
+////        driverManager = new DriverManager();
+//    }
+
+    @BeforeTest
+    @Parameters({"environment"})
+    public void setUpTestEnvironments(String environments) throws Exception{
+//@Optional("stg")
+        PropertiesLoader.environment= environments;
         PropertiesLoader.initializeProperties();
         PropertiesValidator.validateConfigurations();
         driverManager = new DriverManager();
+
     }
 
     @BeforeMethod(alwaysRun = true)

@@ -1,5 +1,6 @@
 package com.automationbytarun.components;
 
+import com.automationbytarun.properties.PropertiesLoader;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -27,7 +28,7 @@ public class DataProviderUtils {
         List<String> allTestFields = Arrays.asList(testFields.split(","));
 //        System.out.println(allTestFields);
 
-        File testDataFile = new File(System.getProperty("user.dir")+ "//src//test//resources//testData.json");
+        File testDataFile = new File(System.getProperty("user.dir")+ "//src//test//resources//testData-" + PropertiesLoader.environment+".json");
 
         FileReader fis = new FileReader(testDataFile);
         JSONParser parser = new JSONParser();
