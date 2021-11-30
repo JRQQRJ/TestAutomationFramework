@@ -48,7 +48,9 @@ public class PropertiesLoader {
         deleteCookies = Boolean.valueOf(configProperties.getProperty("deleteCookies"));
         remoteRun = Boolean.valueOf(configProperties.getProperty("remoteRun"));
         appUrl = configProperties.getProperty("appUrl");
-        environment="stg";
+        if(environment.isEmpty()) {
+            environment = "stg";
+        }
     }
 
 

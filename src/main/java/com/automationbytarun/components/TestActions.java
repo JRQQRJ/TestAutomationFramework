@@ -16,21 +16,33 @@ public class TestActions {
 
 //    @BeforeSuite
 //    public void setUpConfigurations() throws Exception {
-////        PropertiesLoader.initializeProperties();
-////        PropertiesValidator.validateConfigurations();
-////        driverManager = new DriverManager();
+//        PropertiesLoader.initializeProperties();
+//        PropertiesValidator.validateConfigurations();
+//        driverManager = new DriverManager();
 //    }
 
-    @BeforeTest
-    @Parameters({"environment"})
-    public void setUpTestEnvironments(String environments) throws Exception{
-//@Optional("stg")
-        PropertiesLoader.environment= environments;
+    @BeforeSuite
+    public void setUpEnvironment() throws Exception {
+        System.out.println("a");
+        PropertiesLoader.environment=System.getProperty("envName");
         PropertiesLoader.initializeProperties();
         PropertiesValidator.validateConfigurations();
         driverManager = new DriverManager();
-
     }
+
+
+
+
+//    @BeforeTest
+//    @Parameters({"environment"})
+//    public void setUpTestEnvironments(String environments) throws Exception{
+////@Optional("stg")
+//        PropertiesLoader.environment= environments;
+//        PropertiesLoader.initializeProperties();
+//        PropertiesValidator.validateConfigurations();
+//        driverManager = new DriverManager();
+//
+//    }
 
     @BeforeMethod(alwaysRun = true)
     public void setUpBrowser() throws Exception {
